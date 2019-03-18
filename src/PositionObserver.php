@@ -73,7 +73,7 @@ class PositionObserver
         $query = new PositionQuery($model, $position);
 
         // Run the query
-        $query->runQuery($query, $oldPosition);
+        $query->runQuery($query->query(), $oldPosition);
     }
 
     /**
@@ -157,6 +157,6 @@ class PositionObserver
      */
     protected function firePositionedEvent(Model $model)
     {
-        $this->events->fire('eloquent.positioned: '.get_class($model), [$model]);
+        $this->events->dispatch('eloquent.positioned: '.get_class($model), [$model]);
     }
 }
