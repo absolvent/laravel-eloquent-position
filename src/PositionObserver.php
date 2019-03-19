@@ -60,6 +60,12 @@ class PositionObserver
         }
     }
 
+    public function deleting($model)
+    {
+        $model->where($model->getPositionColumn(), '>', $model->getPosition())
+            ->decrement($model->getPositionColumn());
+    }
+
     /**
      * Forces the new position, will be overriden if it's out of maximum bounds.
      *
